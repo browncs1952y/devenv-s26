@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: browncs19525y/cs1952y-devenv-test2
+  IMAGE_NAME: browncs1952y/cs1952y-devenv-test2
 
 jobs:
 
