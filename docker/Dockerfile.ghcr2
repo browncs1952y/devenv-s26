@@ -1,4 +1,4 @@
-FROM ghcr.io/browncs19525y/cs1952y-devenv-test1:latest
+FROM ghcr.io/browncs1952y/cs1952y-devenv-test1:latest
 
 # install riscv-gnu-toolchain
 RUN mkdir -p /deps/riscv && git clone https://github.com/riscv/riscv-gnu-toolchain /deps/riscv &&\
