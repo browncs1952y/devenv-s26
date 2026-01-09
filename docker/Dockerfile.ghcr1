@@ -27,17 +27,3 @@ ENV LANG en_US.UTF-8
 
 # remove unneeded .deb files
 RUN rm -r /var/lib/apt/lists/*
-
-# set up passwordless sudo for user cs1952y-user
-RUN useradd -m -s /bin/bash cs1952y-user && \
-  echo "cs1952y-user ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/cs1952y-init
-
-# configure your environment
-ARG USER=cs1952y\ User
-ARG EMAIL=nobody@example.com
-
-USER cs1952y-user
-RUN rm -f ~/.bash_logout
-
-WORKDIR /home/cs1952y-user
-CMD ["/bin/bash", "-l"]
