@@ -1,6 +1,8 @@
 FROM ghcr.io/browncs1952y/cs1952y-devenv-test1:latest
 
 # install riscv-gnu-toolchain
-RUN mkdir -p /deps/riscv && git clone https://github.com/riscv/riscv-gnu-toolchain /deps/riscv &&\
-    export PATH="$PATH:/opt/riscv" && cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib && make -j8 &&\
-    echo "export PATH:/opt/riscv" >> /home/cs1952y-user/.bashrc
+RUN mkdir -p /deps/riscv && git clone https://github.com/riscv/riscv-gnu-toolchain /deps/riscv
+
+RUN export PATH="$PATH:/opt/riscv" && cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib && make
+
+RUN echo "export PATH=\"\$PATH:/opt/riscv\"" >> /home/cs1952y-user/.bashrc
