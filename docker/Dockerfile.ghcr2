@@ -5,4 +5,6 @@ RUN mkdir -p /deps/riscv && git clone https://github.com/riscv/riscv-gnu-toolcha
 
 RUN export PATH="$PATH:/opt/riscv" && cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib && make
 
-RUN echo "export PATH=\"\$PATH:/opt/riscv\"" >> /home/cs1952y-user/.bashrc
+RUN rm -rf /deps/riscv
+
+# RUN echo "export PATH=\"\$PATH:/opt/riscv\"" >> /home/cs1952y-user/.bashrc
