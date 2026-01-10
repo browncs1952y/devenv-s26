@@ -1,11 +1,11 @@
-name: Build autograder image test 3 (qt)
+name: Build autograder image test 6 (gem5)
 
 on:
   workflow_dispatch
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: browncs1952y/cs1952y-devenv-test3
+  IMAGE_NAME: browncs1952y/cs1952y-devenv-test6
 
 jobs:
 
@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           no-cache: true
-          file: docker/Dockerfile.ghcr3
+          file: docker/Dockerfile.ghcr6
           context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

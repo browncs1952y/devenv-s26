@@ -1,4 +1,4 @@
-name: Build autograder image test 2
+name: Build autograder image test 2 (riscv toolchain)
 
 on:
   workflow_dispatch
@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Delete huge unnecessary tools folder
         run: rm -rf /opt/hostedtoolcache
-        
+
       - name: Checkout repository
         uses: actions/checkout@v4
 

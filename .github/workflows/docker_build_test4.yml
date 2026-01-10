@@ -1,4 +1,4 @@
-name: Build autograder image test 4
+name: Build autograder image test 4 (mold)
 
 on:
   workflow_dispatch

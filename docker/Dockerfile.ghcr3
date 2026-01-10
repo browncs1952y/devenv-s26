@@ -1,4 +1,4 @@
-FROM ghcr.io/browncs1952y/cs1952y-devenv-test2:latest
+FROM ghcr.io/browncs1952y/cs1952y-devenv-test1:latest
 
 # build Qt6.8.0
 RUN mkdir -p /deps/Qt6.8.0 && cd /deps/Qt6.8.0 &&\ 

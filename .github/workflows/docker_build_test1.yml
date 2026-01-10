@@ -1,4 +1,4 @@
-name: Build autograder image test 1
+name: Build autograder image test 1 (apt install)
 
 on:
   workflow_dispatch
