@@ -1,4 +1,4 @@
-FROM ghcr.io/browncs1952y/cs1952y-devenv-test4:latest
+FROM ghcr.io/browncs1952y/cs1952y-devenv-test3:latest
 
 # clone Ripes repo
 RUN mkdir -p /home/cs1952y-user && git clone --recursive https://github.com/browncs1952y/Ripes-1952y /home/cs1952y-user/Ripes
