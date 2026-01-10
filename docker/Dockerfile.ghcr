@@ -62,7 +62,7 @@ ENV CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install
 RUN git clone --recursive https://github.com/browncs1952y/Ripes-1952y /home/cs1952y-user/Ripes &&\
   cd /home/cs1952y-user/Ripes &&\
   cmake . -DCMAKE_PREFIX_PATH=/deps/Qt6.8.0/install &&\
-  make -j8
+  make -j4
 
 # install mold linker
 RUN mkdir -p /deps/mold &&\
@@ -70,7 +70,7 @@ RUN mkdir -p /deps/mold &&\
   cd /deps/mold &&\
   sudo ./install-build-deps.sh &&\
   cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=c++ -B build &&\
-  cmake --build build -j8 &&\
+  cmake --build build -j4 &&\
   sudo cmake --build build --target install
 
 # clone and build gem5
@@ -79,8 +79,8 @@ RUN git clone https://github.com/browncs1952y/gem5-assignments-stencil /home/cs1
   scons defconfig /gem5_build build_opts/RISCV --ignore-style &&\
   scons setconfig /gem5_build USE_KVM=y --ignore-style &&\
   scons setconfig /gem5_build M5_BUILD_CACHE=/gem5_cache --ignore-style &&\
-  scons /gem5_build/gem5.debug -j8 --linker=mold --limit-ld-memory-usage --ignore-style &&\
-  echo "alias build-gem5=\"scons /gem5_build/gem5.debug -j8 --linker=mold --limit-ld-memory-usage --ignore-style\"" >> /home/cs1952y-user/.bashrc
+  scons /gem5_build/gem5.debug -j4 --linker=mold --limit-ld-memory-usage --ignore-style &&\
+  echo "alias build-gem5=\"scons /gem5_build/gem5.debug -j4 --linker=mold --limit-ld-memory-usage --ignore-style\"" >> /home/cs1952y-user/.bashrc
 
 RUN rm -f ~/.bash_logout
 

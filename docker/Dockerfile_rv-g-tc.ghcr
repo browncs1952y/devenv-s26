@@ -13,7 +13,7 @@ RUN apt-get update &&\
 # install riscv-gnu-toolchain
 RUN mkdir -p /deps/riscv && git clone --depth 1 https://github.com/riscv/riscv-gnu-toolchain /deps/riscv
 
-RUN export PATH="$PATH:/opt/riscv" && cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib && make > /dev/null
+RUN export PATH="$PATH:/opt/riscv" && cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib && make -j4 > /dev/null
 
 RUN rm -rf /deps/riscv
 
