@@ -15,4 +15,4 @@ RUN mkdir -p /deps/Qt6.8.0 && cd /deps/Qt6.8.0 &&\
 
 ENV CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install
 
-RUN echo "export CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install" >> /home/cs1952y-user/.bashrc
+# RUN echo "export CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install" >> /home/cs1952y-user/.bashrc
