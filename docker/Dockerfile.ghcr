@@ -42,7 +42,7 @@ ENV LANG=en_US.UTF-8
 # build Qt6.8.0
 RUN mkdir -p /deps/Qt6.8.0 && cd /deps/Qt6.8.0 &&\ 
   wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtcharts-everywhere-src-6.8.0.tar.xz https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtsvg-everywhere-src-6.8.0.tar.xz &&\
-  for f in *.tar.xz; do tar xvf "$f"; done && rm *.tar.xz &&\
+  for f in *.tar.xz; do tar xf "$f"; done && rm *.tar.xz &&\
   mkdir /deps/Qt6.8.0/install &&\
   cd /deps/Qt6.8.0/qtbase-everywhere-src-6.8.0 && ./configure -prefix /deps/Qt6.8.0/install &&\ 
   cmake --build . --parallel && cmake --install . &&\
@@ -52,6 +52,7 @@ RUN mkdir -p /deps/Qt6.8.0 && cd /deps/Qt6.8.0 &&\
   cd /deps/Qt6.8.0/qtsvg-everywhere-src-6.8.0 &&\
   /deps/Qt6.8.0/install/bin/qt-configure-module . &&\
   cmake --build . --parallel && cmake --install . &&\
+  cd /deps/Qt6.8.0/ && rm -rf qtbase-everywhere-src-6.8.0 qtcharts-everywhere-src-6.8.0 qtsvg-everywhere-src-6.8.0 &&\
   echo "export CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install" >> /home/cs1952y-user/.bashrc
 
 ENV CMAKE_PREFIX_PATH=/deps/Qt6.8.0/install
