@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: browncs1952y/cs1952y-devenv
+  IMAGE_NAME: browncs1952y/cs1952y-devenv26
 
 jobs:
 
@@ -49,4 +49,4 @@ jobs:
           file: docker/Dockerfile.ghcr
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:x64-latest
