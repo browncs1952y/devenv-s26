@@ -13,7 +13,7 @@ if [ -d ../gem5 ]; then
 fi
 
 arch="$(uname -m)"
-image="ghcr.io/browncs1952y/cs1952y-devenv"
+image="ghcr.io/browncs1952y/cs1952y-devenv26"
 tag=
 
 if [[ $# -gt 0 ]]; then
