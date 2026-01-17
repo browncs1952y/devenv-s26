@@ -8,6 +8,6 @@ RUN apt-get update &&\
   gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build git cmake\
   libglib2.0-dev libslirp-dev libncurses-dev
 
-RUN mkdir /deps/riscv && git clone --depth 1 https://github.com/riscv/riscv-gnu-toolchain /deps/riscv &&\
+RUN mkdir -p /deps/riscv && git clone --depth 1 https://github.com/riscv/riscv-gnu-toolchain /deps/riscv &&\
   cd /deps/riscv && ./configure --prefix=/opt/riscv --enable-multilib --enable-strip &&\
   make -j4 > /dev/null && rm -rf /deps/riscv
