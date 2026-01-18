@@ -1,4 +1,4 @@
-name: Build devenv (x64) on Docker
+name: Build devenv (x64) on Docker (copying rv)
 
 on:
   workflow_dispatch
