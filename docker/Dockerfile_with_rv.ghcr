@@ -85,13 +85,7 @@ RUN git clone https://github.com/browncs1952y/gem5-assignments-stencil /home/cs1
   scons /gem5_build/gem5.debug -j4 --linker=mold --limit-ld-memory-usage --ignore-style &&\
   echo "alias build-gem5=\"scons /gem5_build/gem5.debug -j8 --linker=mold --limit-ld-memory-usage --ignore-style\"" >> /home/cs1952y-user/.bashrc
 
-RUN sudo mkdir /opt/riscv && cd /home/cs1952y-user &&\
-  wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz &&\
-  sudo tar xzf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz -C /opt/riscv &&\
-  cd /opt/riscv && sudo mv riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/* . &&\
-  sudo rm -rf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14 &&\
-  rm /home/cs1952y-user/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz &&\
-  echo "export PATH=\"$PATH:/opt/riscv/bin\"" >> /home/cs1952y-user/.bashrc
+RUN echo "export PATH=\"$PATH:/opt/riscv/bin\"" >> /home/cs1952y-user/.bashrc
 
 RUN rm -f ~/.bash_logout
 
