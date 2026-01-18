@@ -20,7 +20,7 @@ if [[ $# -gt 0 ]]; then
     if [ "$1" = "--x86" ]; then
         tag="x64-latest"
     elif [ "$1" = "--arm" ]; then
-        tag="arm65-latest"
+        tag="arm64-latest"
     else
         echo "Argument $1 unrecognized. Must be either --x86 or --arm (or nothing to default to system architecture)"
         exit 1
@@ -29,7 +29,7 @@ else
     if [ "$arch" = "arm64" ] || [ "$arch" = "$aarch64" ]; then
         tag="arm64-latest"
     elif [ "$arch" = "x86_64" ] || [ "$arch" = "x86_64h" ] || [ "$arch" = "amd64" ]; then
-        tag="x86_64-latest"
+        tag="x64-latest"
     else
         echo "Unable to recognize architecture $arch."
         echo "If you know you are on an x86_64 architecture (Intel or AMD machines), run this script with the --x86 flag"
@@ -40,7 +40,7 @@ else
 fi
 
 echo "Pulling image $image:$tag"
-docker pull "$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit)
+docker pull "$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit 1)
 docker tag "$image:$tag" "cs1952y:latest" || exit
 
 echo "Starting docker container to copy over directories"
