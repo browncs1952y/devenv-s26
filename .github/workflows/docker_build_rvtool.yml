@@ -1,4 +1,4 @@
-name: Attempt to build riscv-gnu-toolchain
+name: Build riscv-gnu-toolchain in Docker
 
 on:
   workflow_dispatch
@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           no-cache: true
-          file: docker/Dockerfile_rvtool
+          file: docker/Dockerfile_rvtool.ghcr
           context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

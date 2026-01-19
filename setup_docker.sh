@@ -14,18 +14,31 @@ fi
 
 arch="$(uname -m)"
 image="ghcr.io/browncs1952y/cs1952y-devenv26"
-tag=
+tag=""
+platform=""
 
-if [[ $# -gt 0 ]]; then
-    if [ "$1" = "--x86" ]; then
-        tag="x64-latest"
-    elif [ "$1" = "--arm" ]; then
-        tag="arm64-latest"
-    else
-        echo "Argument $1 unrecognized. Must be either --x86 or --arm (or nothing to default to system architecture)"
-        exit 1
-    fi
-else
+while test "$#" -ne 0; do
+  case "$1" in 
+    --x86) 
+      tag="x64-latest"
+      shift
+      ;;
+    --arm)
+      tag="arm64-latest"
+      shift
+      ;;
+    --dbg-cross)
+      platform="--platform linux/amd64 "
+      tag=$2
+      shift 2
+    *)
+      echo "Usage: setup_docker.sh [--x86|--arm]"
+      exit 
+      ;;
+  esac
+done
+
+if [ -d "$tag" ]; then
     if [ "$arch" = "arm64" ] || [ "$arch" = "$aarch64" ]; then
         tag="arm64-latest"
     elif [ "$arch" = "x86_64" ] || [ "$arch" = "x86_64h" ] || [ "$arch" = "amd64" ]; then
@@ -34,13 +47,12 @@ else
         echo "Unable to recognize architecture $arch."
         echo "If you know you are on an x86_64 architecture (Intel or AMD machines), run this script with the --x86 flag"
         echo "If you know you are on an arm64 architecture (Apple Silicon), run this script with the --arm flag"
-        echo "e.g. ./pull_docker.sh --x86 OR ./pull_docker.sh --arm"
+        echo "e.g. ./setup_docker.sh --x86 OR ./setup_docker.sh --arm"
         exit 1
     fi
 fi
-
 echo "Pulling image $image:$tag"
-docker pull "$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit 1)
+docker pull "$platform$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit 1)
 docker tag "$image:$tag" "cs1952y:latest" || exit
 
 echo "Starting docker container to copy over directories"

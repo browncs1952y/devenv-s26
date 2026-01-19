@@ -1,3 +1,5 @@
+FROM ghcr.io/browncs1952y/cs1952y-rv-gnu-tc:latest as rv-source
+
 FROM ubuntu:jammy
 
 # set environment variables for tzdata
@@ -18,6 +20,9 @@ ARG EMAIL=nobody@example.com
 
 USER cs1952y-user
 
+# riscv is too large to build on its own in github actions so we copy it from a prebuilt container
+COPY --from=rv-source /opt/riscv /opt/riscv
+
 RUN sudo mkdir /deps && sudo chown cs1952y-user /deps && chmod u+wrx /deps &&\
   sudo apt-get update &&\
   yes | unminimize &&\
@@ -33,7 +38,9 @@ RUN sudo mkdir /deps && sudo chown cs1952y-user /deps && chmod u+wrx /deps &&\
   ninja-build '^libxcb.*-dev' libx11-xcb-dev libegl1-mesa-dev libglu1-mesa-dev libxrender-dev libxi-dev\
   libxkbcommon-dev libxkbcommon-x11-dev\
   autoconf automake autotools-dev python3-tomli libmpc-dev libmpfr-dev libgmp-dev bison flex texinfo gperf\
-  libtool patchutils libexpat-dev libglib2.0-dev libslirp-dev libncurses-dev 
+  libtool patchutils libexpat-dev libglib2.0-dev libslirp-dev libncurses-dev\
+  clang-tidy clang-tools clang clangd libclang-dev libclang1 libc++-dev libc++1 libc++abi-dev libc++abi1\
+  liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 lld llvm-dev llvm-runtime llvm python3-clang 
 
 # set up default locale
 RUN sudo locale-gen en_US.UTF-8
@@ -81,13 +88,7 @@ RUN git clone https://github.com/browncs1952y/gem5-assignments-stencil /home/cs1
   scons /gem5_build/gem5.debug -j4 --linker=mold --limit-ld-memory-usage --ignore-style &&\
   echo "alias build-gem5=\"scons /gem5_build/gem5.debug -j8 --linker=mold --limit-ld-memory-usage --ignore-style\"" >> /home/cs1952y-user/.bashrc
 
-RUN sudo mkdir /opt/riscv && cd /home/cs1952y-user &&\
-  wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz &&\
-  sudo tar xzf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz -C /opt/riscv &&\
-  cd /opt/riscv && sudo mv riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/* . &&\
-  sudo rm -rf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14 &&\
-  rm /home/cs1952y-user/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz &&\
-  echo "export PATH=\"$PATH:/opt/riscv/bin\"" >> /home/cs1952y-user/.bashrc
+RUN echo "export PATH=\"$PATH:/opt/riscv/bin\"" >> /home/cs1952y-user/.bashrc
 
 RUN rm -f ~/.bash_logout
 
