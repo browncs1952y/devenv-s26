@@ -33,7 +33,7 @@ RUN sudo mkdir /deps && sudo chown cs1952y-user /deps && chmod u+wrx /deps &&\
   bc curl dc git git-doc jq man emacs micro vim nano sudo wget x11-apps\
   libreadline-dev locales wamerican libssl-dev\
   build-essential m4 scons zlib1g zlib1g-dev libprotobuf-dev\ 
-  protobuf-compiler libprotoc-dev libgoogle-perftools-dev python3-dev\
+  protobuf-compiler libprotoc-dev libunwind-dev libgoogle-perftools-dev python3-dev\
   python3-pip libboost-all-dev pkg-config \
   ninja-build '^libxcb.*-dev' libx11-xcb-dev libegl1-mesa-dev libglu1-mesa-dev libxrender-dev libxi-dev\
   libxkbcommon-dev libxkbcommon-x11-dev\
