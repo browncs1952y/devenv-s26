@@ -89,11 +89,6 @@ RUN mkdir /deps/riscv && git clone --depth 1 https://github.com/riscv/riscv-gnu-
   cd /deps/riscv && export PATH="$PATH:/opt/riscv" && ./configure --prefix=/opt/riscv --enable-multilib && sudo make -j8 &&\
   cd /home/cs1952y-user && sudo rm -rf /deps/riscv && echo "export PATH=\"\$PATH:/opt/riscv/bin\"" >> /home/cs1952y-user/.bashrc
 
-# install riscv-gnu toolchain explicitly for Ripes
-RUN mkdir /deps/riscv && git clone --depth 1 https://github.com/riscv/riscv-gnu-toolchain /deps/riscv &&\
-  cd /deps/riscv && ./configure --prefix=/opt/riscv-Ripes --with-multilib-generator="rv32i-ilp32--;rv32im-ilp32--" && sudo make -j8 &&\
-  sudo rm -rf /deps/riscv
-
 RUN rm -f ~/.bash_logout
 
 WORKDIR /home/cs1952y-user
