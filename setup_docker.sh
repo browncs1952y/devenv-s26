@@ -31,6 +31,7 @@ while test "$#" -ne 0; do
       platform="--platform linux/amd64 "
       tag=$2
       shift 2
+      ;;
     *)
       echo "Usage: setup_docker.sh [--x86|--arm]"
       exit 
@@ -38,7 +39,7 @@ while test "$#" -ne 0; do
   esac
 done
 
-if [ -d "$tag" ]; then
+if [ -d $tag ]; then
     if [ "$arch" = "arm64" ] || [ "$arch" = "$aarch64" ]; then
         tag="arm64-latest"
     elif [ "$arch" = "x86_64" ] || [ "$arch" = "x86_64h" ] || [ "$arch" = "amd64" ]; then
@@ -51,6 +52,7 @@ if [ -d "$tag" ]; then
         exit 1
     fi
 fi
+
 echo "Pulling image $image:$tag"
 docker pull "$platform$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit 1)
 docker tag "$image:$tag" "cs1952y:latest" || exit
