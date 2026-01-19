@@ -54,7 +54,7 @@ if [ -d $tag ]; then
 fi
 
 echo "Pulling image $image:$tag"
-docker pull "$platform$image:$tag" || (echo "Error pulling image. Please contact course staff." && exit 1)
+docker pull $platform$image:$tag || (echo "Error pulling image. Please contact course staff." && exit 1)
 docker tag "$image:$tag" "cs1952y:latest" || exit
 
 echo "Starting docker container to copy over directories"
