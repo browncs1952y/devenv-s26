@@ -67,8 +67,8 @@ start_new_container() {
   echo "Starting a new container..."
   docker run -itd \
       --name $CONTAINER \
-      -v ../Ripes:/home/cs1952y-user/Ripes \
-      -v ../gem5:/home/cs1952y-user/gem5 \
+      -v $(realpath ../Ripes):/home/cs1952y-user/Ripes \
+      -v $(realpath ../gem5):/home/cs1952y-user/gem5 \
       $displayarg$x11mountarg \
       $IMAGE bash
 
