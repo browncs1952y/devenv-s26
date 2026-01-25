@@ -40,7 +40,7 @@ while test "$#" -ne 0; do
 done
 
 if [ -d $tag ]; then
-    if [ "$arch" = "arm64" ] || [ "$arch" = "$aarch64" ]; then
+    if [ "$arch" = "arm64" ] || [ "$arch" = "aarch64" ]; then
         tag="arm64-latest"
     elif [ "$arch" = "x86_64" ] || [ "$arch" = "x86_64h" ] || [ "$arch" = "amd64" ]; then
         tag="x64-latest"
